@@ -5,8 +5,57 @@
     <title>Kanban Vue</title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/vue.min.js"></script>
-    <script src="scripts/main.js"></script>
   </head>
   <body>
+    <div id="kanban" class="container">
+      <div>
+        <div v-on:click="inputEnable = !inputEnable" v-if="!inputEnable">+</div>
+        <div v-on:click="inputEnable = !inputEnable" v-if="inputEnable">-</div>
+        <transition name="fade">
+          <input type="text" v-model="newTask" v-on:keyup.enter="addTask" v-if="inputEnable">
+        </transition>
+      </div>
+      <div>
+        <span>TODO</span>
+        <span v-if="taskInStatus('todo').length > 0">
+          {{ taskInStatus('todo').length }}
+        </span>
+        <ul>
+          <li v-for="task in taskInStatus('todo')">
+            {{ task.title }}
+            <span v-on:click="moveTaskTo(task.id, 'doing')">&raquo;</span>
+            <span v-on:click="removeTask(task.id)">&times;</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <span>DOING</span>
+        <span v-if="taskInStatus('doing').length > 0">
+          {{ taskInStatus('doing').length }}
+        </span>
+        <ul>
+          <li v-for="task in taskInStatus('doing')">
+            <span v-on:click="moveTaskTo(task.id, 'todo')">&laquo;</span>
+            {{ task.title }}
+            <span v-on:click="moveTaskTo(task.id, 'done')">&raquo;</span>
+            <span v-on:click="removeTask(task.id)">&times;</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <span>DONE</span>
+        <span v-if="taskInStatus('done').length > 0">
+          {{ taskInStatus('done').length }}
+        </span>
+        <ul>
+          <li v-for="task in taskInStatus('done')">
+            <span v-on:click="moveTaskTo(task.id, 'doing')">&laquo;</span>
+            {{ task.title }}
+            <span v-on:click="removeTask(task.id)">&times;</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="scripts/main.js"></script>
   </body>
 </html>
