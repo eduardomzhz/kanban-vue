@@ -2,22 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kanban Vue</title>
+    <title>vue-kanban</title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/vue.min.js"></script>
   </head>
   <body>
+    <div class="header">
+      VUE-KANBAN
+      <a href="https://github.com/eduardomzhz/kanban-vue/">
+        <img src="styles/github.png" title="GitHub repository" class="icon">
+      </a>
+    </div>
     <div id="kanban" class="container">
       <div class="form">
-        <label class="icon" v-on:click="inputEnable = !inputEnable" v-if="!inputEnable">+</label>
-        <label class="icon" v-on:click="inputEnable = !inputEnable" v-if="inputEnable">-</label>
+        <button class="button" v-on:click="inputEnable = !inputEnable" v-if="!inputEnable">NEW TASK</button>
+        <button class="button" v-on:click="inputEnable = !inputEnable" v-if="inputEnable">CANCEL</button>
         <transition name="fade">
           <input type="text" v-model="newTask" v-on:keyup.enter="addTask" v-if="inputEnable">
         </transition>
       </div>
       <div class="grid">
         <div id="todo">
-          <div class="header">
+          <div class="title">
             <span>TODO</span>
             <span class="badge" v-if="taskInStatus('todo').length > 0">
               {{ taskInStatus('todo').length }}
@@ -32,7 +38,7 @@
           </ul>
         </div>
         <div id="doing">
-          <div class="header">
+          <div class="title">
             <span>DOING</span>
             <span class="badge" v-if="taskInStatus('doing').length > 0">
               {{ taskInStatus('doing').length }}
@@ -48,7 +54,7 @@
           </ul>
         </div>
         <div id="done">
-          <div class="header">
+          <div class="title">
             <span>DONE</span>
             <span class="badge" v-if="taskInStatus('done').length > 0">
               {{ taskInStatus('done').length }}

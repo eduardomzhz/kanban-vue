@@ -1,11 +1,39 @@
 body {
-  background: #0d0d0d;
+  background: #202020;
   color: #ffffff;
   font-family: Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.badge {
+  border-radius: 20px;
+  color: #202020;
+  font-size: 0.75em;
+  padding: 3px 3px 1px 5px;
+  vertical-align: calc(100% - 11px);
+}
+.button {
+  background: #375a7f;
+  border: #375a7f;
+  border-radius: 1px;
+  color: #eeeeee;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 4px 10px;
+}
+.button:hover {
+  background: #28415b;
 }
 .container {
   margin: 20px auto;
   width: 95%;
+}
+.form {
+  text-align: center;
+}
+.form input {
+  color: #202020;
+  width: 40%;
 }
 .grid {
   display: grid;
@@ -19,49 +47,27 @@ body {
   padding: 0 10px;
 }
 .grid li {
-  background: #222222;
-  border-radius: 2px;
+  background: #353535;
+  border-radius: 1px;
   font-size: 0.85em;
   font-weight: 200;
-  margin: 5px 0;
+  margin: 10px 0;
   padding: 5px;
 }
-.form {
-  border-bottom: 1px dotted;
-  border-top: 1px dotted;
-  padding-bottom: 4px;
-  padding-top: 2px;
-  text-align: center;
-}
-.form .icon {
-  font-size: 1.5em;
-}
-.form input {
-  width: 50%;
-}
 .header {
-  border-bottom: 3px solid;
-  letter-spacing: 1px;
-  padding: 10px;
+  background: #375a7f;
   text-align: center;
+  font-size: 1em;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  position: relative;
 }
-#todo .header{
-  border-color: #ee3333;
-}
-#doing .header {
-  border-color: #ccc427;
-}
-#done .header {
-  border-color: #48cc6a;
-}
-.badge {
-  background: #eeeeee;
-  border-radius: 20px;
-  color: #0d0d0d;
-  font-size: 0.8em;
-  font-weight: 700;
-  padding: 2px 4px;
-  vertical-align: top;
+.header img {
+  width: 25px;
+  position: absolute;
+  left: calc(100% - 50px);
+  top: 8px;
 }
 .icon {
   cursor: pointer;
@@ -73,14 +79,39 @@ body {
   opacity: 1;
   text-shadow: 0 0 5px #6390cb;
 }
+.title {
+  border: 1px solid;
+  letter-spacing: 2px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 1px;
+}
+#doing .badge {
+  background: #F39C12;
+}
+#doing .title {
+  border-color: #F39C12;
+}
+#done .badge {
+  background: #00bc8c;
+}
+#done .title {
+  border-color: #00bc8c;
+}
+#todo .badge{
+  background: #E74C3C;
+}
+#todo .title{
+  border-color: #E74C3C;
+}
 
 @media screen and (max-width: 800px) {
+  .form input {
+    width: 60%;
+  }
   .grid {
     grid-auto-columns: minmax(500px, auto);
     grid-template-columns: 1fr;
     margin-top: 20px;
-  }
-  .form input {
-    width: 90%;
   }
 }
